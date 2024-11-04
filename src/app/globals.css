@@ -14,8 +14,12 @@
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .postion-center {
+    @apply absolute left-1/2 top-1/2 w-full -translate-x-1/2 -translate-y-1/2 transform;
+  }
+
+  .accesibility-hidden {
+    @apply absolute -m-[1px] h-[1px] w-[1px] overflow-hidden;
+  }
 }
