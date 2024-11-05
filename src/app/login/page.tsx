@@ -10,25 +10,27 @@ export default async function Login() {
         <form action="">
           <ul className="mb-12 mt-6 flex flex-col gap-y-6">
             <li className={liStyle}>
-              <label htmlFor="id" className={lableStyle}>
+              <label htmlFor="uesrId" className={lableStyle}>
                 아이디
               </label>
               <input
                 type="text"
                 className={inputStyle}
                 placeholder="아이디를 입력하세요."
-                id="id"
+                id="uesrId"
+                autoComplete="username"
               />
             </li>
             <li className={liStyle}>
-              <label htmlFor="pw" className={lableStyle}>
+              <label htmlFor="userPw" className={lableStyle}>
                 비밀번호
               </label>
               <input
                 type="password"
-                id="pw"
+                id="userPw"
                 className={inputStyle}
                 placeholder="비밀번호를 입력하세요."
+                autoComplete="current-password"
               />
             </li>
           </ul>
