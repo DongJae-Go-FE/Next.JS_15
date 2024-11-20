@@ -4,6 +4,8 @@ import AuthProvider from "@/components/Provider/AuthProvider";
 import localFont from "next/font/local";
 import "./globals.css";
 
+import Header from "@/components/Header";
+
 export const pretendard = localFont({
   src: "fonts/PretendardVariable.woff2",
   display: "swap",
@@ -23,7 +25,10 @@ export default function RootLayout({
   return (
     <html lang="ko" className={pretendard.className}>
       <AuthProvider>
-        <body>{children}</body>
+        <body>
+          <Header />
+          {children}
+        </body>
       </AuthProvider>
     </html>
   );
