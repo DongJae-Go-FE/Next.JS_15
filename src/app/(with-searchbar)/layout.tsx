@@ -1,11 +1,12 @@
-import SearchBar from "./_components/SearchBar";
+import SearchBar from "../../components/SearchBar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
-      <SearchBar />
-      {children}
-      직접 위치 셋팅
-    </div>
+    <main className="flex h-[100dvh] w-[100dvw] items-center justify-center bg-gray-100 pt-14">
+      <div className="h-[800px] w-[600px] bg-white rounded-2xl shadow-md p-4">
+        <SearchBar />
+        {children}
+      </div>
+    </main>
   );
 }
