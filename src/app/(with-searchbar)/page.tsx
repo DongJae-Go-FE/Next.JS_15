@@ -1,11 +1,17 @@
+import RecommendBooks from "@/components/_clientComponents/RecommendBooks";
+import RegisteredAllBooks from "@/components/_clientComponents/RegisteredAllBooks";
+
 export default function Home() {
   return (
     <div>
-      <h2>지금 추천하는 도서</h2>
-      <ul></ul>
-
-      <h2>등록된 모든 도서</h2>
-      <ul></ul>
+      <section className="mb-20">
+        <h2>지금 추천하는 도서</h2>
+        <RecommendBooks />
+      </section>
+      <section>
+        <h2>등록된 모든 도서</h2>
+        <RegisteredAllBooks />
+      </section>
     </div>
   );
 }

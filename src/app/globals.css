@@ -14,8 +14,12 @@
   }
 }
 
+main {
+  @apply h-[100dvh] w-[100dvw] bg-gray-100 pt-14;
+}
+
 h2 {
-  @apply font-bold text-black mb-4;
+  @apply mb-4 font-bold text-black;
 }
 
 @layer components {

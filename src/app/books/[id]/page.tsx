@@ -1,3 +1,5 @@
+import BookInfo from "@/components/_clientComponents/BookInfo";
+
 export default async function page({
   params,
 }: {
@@ -5,7 +7,11 @@ export default async function page({
 }) {
   const { id } = await params;
 
-  return <div>파라미터{id}</div>;
+  return (
+    <main className="flex items-center justify-center">
+      <BookInfo id={id} />
+    </main>
+  );
 }
 /** 폴더명을 [...파라미터명] 캐치 올 세그먼트 (Catch All Segment)로 사용하면 [파라미터명]/[파라미터명]
  * 이렇게 폴더를 만들면 하이드레이션 오류 났던 것을 자유롭게 대응이 가능하다 [...파라미터명] 이렇게

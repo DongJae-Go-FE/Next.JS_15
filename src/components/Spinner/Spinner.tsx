@@ -4,7 +4,7 @@ import { FC } from "react";
 
 const Spinner: FC = () => {
   return (
-    <div className="absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%]">
+    <div className="postion-center">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="38"

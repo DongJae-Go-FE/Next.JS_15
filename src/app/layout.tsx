@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AuthProvider from "@/components/Provider/AuthProvider";
+import AuthProvider from "@/components/_clientComponents/Provider/AuthProvider";
 
 import localFont from "next/font/local";
 import "./globals.css";
