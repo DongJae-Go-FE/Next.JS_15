@@ -12,7 +12,7 @@ export default function Test() {
     }),
   );
 
-  console.log(test);
+//  console.log(test);
 
   return <div className="">{}</div>;
 }

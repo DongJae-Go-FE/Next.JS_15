@@ -1,7 +1,5 @@
-"use client";
-
 import List from "@/components/List";
 
-export default function SearchBooks() {
+export default function ServerSearchBooks() {
   return <List />;
 }

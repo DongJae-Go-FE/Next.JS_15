@@ -1,16 +1,24 @@
-import RecommendBooks from "@/components/_clientComponents/RecommendBooks";
-import RegisteredAllBooks from "@/components/_clientComponents/RegisteredAllBooks";
+import ClientRecommendBooks from "@/components/_clientComponents/ClientRecommendBooks";
+import ClientRegisteredAllBooks from "@/components/_clientComponents/ClientRegisteredAllBooks";
 
-export default function Home() {
+export default async function Home() {
+  const respnseBookData = await fetch("http://localhost:12345/book")
+    .then((value) => {
+      return value.json();
+    })
+    .then((value) => value);
+
+//  console.log(respnseBookData);
+
   return (
     <div>
       <section className="mb-20">
         <h2>지금 추천하는 도서</h2>
-        <RecommendBooks />
+        <ClientRecommendBooks />
       </section>
       <section>
         <h2>등록된 모든 도서</h2>
-        <RegisteredAllBooks />
+        <ClientRegisteredAllBooks />
       </section>
     </div>
   );

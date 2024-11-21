@@ -1,4 +1,4 @@
-import BookInfo from "@/components/_clientComponents/BookInfo";
+import ClientBookInfo from "@/components/_clientComponents/ClientBookInfo";
 
 export default async function page({
   params,
@@ -9,7 +9,7 @@ export default async function page({
 
   return (
     <main className="flex items-center justify-center">
-      <BookInfo id={id} />
+      <ClientBookInfo id={id} />
     </main>
   );
 }

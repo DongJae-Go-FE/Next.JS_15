@@ -4,7 +4,7 @@ import Image from "next/image";
 import Mock from "@/mock/books.json";
 import { BookData } from "@/types";
 
-export default function BookInfo({
+export default function ClientBookInfo({
   id,
   isLoading,
 }: {
