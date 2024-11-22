@@ -8,6 +8,7 @@ import getFetchRequest from "@/util/getFetchRequest";
 export default async function ServerSearchBooks({ query }: { query?: string }) {
   const data = await getFetchRequest<BookData[], { q: string }>({
     path: "/book/search",
+    cache: "force-cache",
     params: {
       q: query || "",
     },

@@ -13,6 +13,7 @@ export default async function ServerBookInfo({
   const data = await getFetchRequest<BookData>({
     path: `/book/${id}`,
     method: "GET",
+    cache: "force-cache",
   });
 
   if (isLoading) {
