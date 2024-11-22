@@ -13,7 +13,7 @@ export default async function page({
       <section>
         <h2>검색 결과</h2>
       </section>
-      <ClientSearchBooks />
+      <ClientSearchBooks query={q} />
     </div>
   );
 }

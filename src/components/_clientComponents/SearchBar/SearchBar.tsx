@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
+
 import { useState, useEffect, KeyboardEvent } from "react";
 
 export default function SearchBar({ side }: { side: "server" | "client" }) {
