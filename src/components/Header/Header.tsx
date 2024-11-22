@@ -16,13 +16,23 @@ export default function Header() {
             </Link>
           </li>
           <li>
-            <Link href="/search" className={fontStyle}>
-              검색
+            <Link href="/server" className={fontStyle}>
+              서버 컴포넌트 메인
             </Link>
           </li>
           <li>
-            <Link href="/books/1" className={fontStyle}>
-              books/1
+            <Link href="/server/search" className={fontStyle}>
+              서버 컴포넌트 검색
+            </Link>
+          </li>
+          <li>
+            <Link href="/client" className={fontStyle}>
+              클라이언트 컴포넌트 메인
+            </Link>
+          </li>
+          <li>
+            <Link href="/client/search" className={fontStyle}>
+              클라이언트 컴포넌트 검색
             </Link>
           </li>
         </ul>

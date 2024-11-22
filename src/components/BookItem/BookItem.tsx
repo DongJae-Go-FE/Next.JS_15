@@ -5,6 +5,7 @@ import { BookData } from "@/types";
 
 export interface BookItemType extends BookData {
   isLoading?: boolean;
+  side?: "server" | "client";
 }
 
 export default function BookItem({
@@ -13,9 +14,9 @@ export default function BookItem({
   subTitle,
   author,
   publisher,
-  description,
   coverImgUrl,
   isLoading,
+  side,
 }: BookItemType) {
   if (isLoading) {
     return (
@@ -32,7 +33,7 @@ export default function BookItem({
 
   return (
     <article className="w-full border-b border-gray-300 p-3">
-      <Link href={`/books/${id}`} className="flex w-full gap-x-2">
+      <Link href={`/${side}/books/${id}`} className="flex w-full gap-x-2">
         <div className="w-[100px]">
           <Image
             width={100}
@@ -43,7 +44,7 @@ export default function BookItem({
             priority
           />
         </div>
-        <div className="w-[calc(100%-108px)] flex flex-col">
+        <div className="flex w-[calc(100%-108px)] flex-col">
           <h3
             className="max-w-[95%] truncate font-bold text-black"
             title={title}

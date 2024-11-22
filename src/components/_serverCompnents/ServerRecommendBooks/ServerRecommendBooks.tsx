@@ -1,13 +1,19 @@
 import List from "@/components/List";
 import BookItem from "@/components/BookItem/BookItem";
 
-import Books from "@/mock/books.json";
+import { BookData } from "@/types";
 
-export default function ServerRecommendBooks() {
+import getFetchRequest from "@/util/getFetchRequest";
+
+export default async function ServerRecommendBooks() {
+  const data = await getFetchRequest<BookData[]>({
+    path: "/book/random",
+  });
+
   return (
     <List
-      items={Books.map((props) => {
-        return <BookItem {...props} />;
+      items={data?.map((props, index) => {
+        return <BookItem side="server" key={index} {...props} />;
       })}
     />
   );

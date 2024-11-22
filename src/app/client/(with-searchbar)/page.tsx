@@ -2,14 +2,6 @@ import ClientRecommendBooks from "@/components/_clientComponents/ClientRecommend
 import ClientRegisteredAllBooks from "@/components/_clientComponents/ClientRegisteredAllBooks";
 
 export default async function Home() {
-  const respnseBookData = await fetch("http://localhost:12345/book")
-    .then((value) => {
-      return value.json();
-    })
-    .then((value) => value);
-
-//  console.log(respnseBookData);
-
   return (
     <div>
       <section className="mb-20">

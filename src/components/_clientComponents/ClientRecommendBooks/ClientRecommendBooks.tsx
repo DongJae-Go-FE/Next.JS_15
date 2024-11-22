@@ -8,8 +8,8 @@ import Books from "@/mock/books.json";
 export default function ClientRecommendBooks() {
   return (
     <List
-      items={Books.map((props) => {
-        return <BookItem {...props} />;
+      items={Books.map((props, index) => {
+        return <BookItem side="client" key={index} {...props} />;
       })}
     />
   );
