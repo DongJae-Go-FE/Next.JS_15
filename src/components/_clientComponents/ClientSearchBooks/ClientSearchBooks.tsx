@@ -17,6 +17,7 @@ export default function ClientSearchBooks({ query }: { query?: string }) {
         params: {
           q: query || "",
         },
+        cache: "force-cache",
       }),
   });
 

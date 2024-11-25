@@ -1,9 +1,22 @@
 import ServerBookInfo from "@/components/_serverCompnents/ServerBookInfo";
 
+//동적 경로 페이지를 정적 페이지로 바꿔 주려면 아래 함수명으로 만들고 스트링 타입의 객체를 배열로 만든다.
+//빌드 타임에 넥스트 서버가 정적인 값들을 읽어서 정적인 페이지를 빌드 타임에 만든다.
+
+export function generateStaticParams() {
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+}
+
+//무조건 문자열 값만 들어 온다
+//export로 내보낸 함수를 사용하면
+//페이지 캐싱을 설정안해도 무조건 정적인 페이지 캐싱으로 설정이 된다.
+//getStaticPath랑 비슷 페이지 라우터에서
+//3번 뿐만 아니라 4번도 실시간으로 풀라우터캐시로 저장
+
 export default async function page({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string | string[] }>; //기본적으로 dynamic 페이지롱 생성
 }) {
   const { id } = await params;
 

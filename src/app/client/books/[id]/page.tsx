@@ -1,9 +1,13 @@
 import ClientBookInfo from "@/components/_clientComponents/ClientBookInfo";
 
+export function generateStaticParams() {
+  return [{ id: "1" }, { id: "2" }, { id: "3" }];
+}
+
 export default async function page({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: string | string[] }>;
 }) {
   const { id } = await params;
 

@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { BookData } from "@/types";
 import getFetchRequest from "@/util/getFetchRequest";
 
-export default function ClientBookInfo({ id }: { id: string }) {
+export default function ClientBookInfo({ id }: { id: string | string[] }) {
   const { data, isLoading } = useQuery({
     queryKey: ["bookInfo"],
     queryFn: () =>

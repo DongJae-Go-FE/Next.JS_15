@@ -7,7 +7,7 @@ export default async function ServerBookInfo({
   id,
   isLoading,
 }: {
-  id: string;
+  id: string | string[];
   isLoading?: boolean;
 }) {
   const data = await getFetchRequest<BookData>({

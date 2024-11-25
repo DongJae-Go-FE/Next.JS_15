@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import queryString from "querystring";
 
 type Method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
@@ -57,12 +58,15 @@ const getFetchRequest = async <Response, Params = undefined>({
     const responseData = response.json();
 
     if (!response.ok) {
+      if (response.status === 404) {
+        notFound();
+      }
       throw `[${response.status}] 에러가 발생했습니다.`;
     }
 
     return responseData as Response;
   } catch (e) {
-    alert(e);
+    console.log(e);
   }
 };
 
