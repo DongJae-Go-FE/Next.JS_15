@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export default async function page() {
-  let btnStyle = "inline-flex h-12 items-center rounded";
+  const btnStyle = "inline-flex h-12 items-center rounded";
 
   return (
     <main className="flex items-center justify-center">

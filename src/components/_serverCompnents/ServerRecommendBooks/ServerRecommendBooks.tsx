@@ -6,8 +6,9 @@ import { BookData } from "@/types";
 import getFetchRequest from "@/util/getFetchRequest";
 
 export default async function ServerRecommendBooks() {
-  const data = await getFetchRequest<BookData[]>({
+  const data = await getFetchRequest<BookData[], { revalidate: number }>({
     path: "/book/random",
+    next: { revalidate: 3 },
   });
 
   return (

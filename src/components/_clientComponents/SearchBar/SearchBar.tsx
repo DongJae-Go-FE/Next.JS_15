@@ -5,7 +5,12 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useState, useEffect, KeyboardEvent } from "react";
 
 export default function SearchBar({ side }: { side: "server" | "client" }) {
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams(); // 빌드 타임에 인덱스 페이지를 정적으로 생성하다가
+  //현재 브라우저에서 쿼리 스트링의 값을 가져오는 역활을 하는데 빌드 타임에는 쿼리 스트링이 없다.
+  //검색어 같은 거 잖아 빌드
+  //빌드 타임에 생성하는 클라이언트 컴포넌트에 useSearchParams 같이 빌드타임에 절대 값을 알 수 없는
+  // 이런 훅을 사용하려고 하면 빌드 중에 오류가 난다.
+  // 비동기로 동작한다.
   const pathname = usePathname();
   const { push } = useRouter();
 

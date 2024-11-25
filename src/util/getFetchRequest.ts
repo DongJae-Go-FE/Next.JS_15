@@ -7,12 +7,14 @@ const base_url = process.env.NEXT_PUBLIC_BACKEND_API as string;
 const getFetchRequest = async <Response, Params = undefined>({
   method = "GET",
   cache,
+  next,
   ...config
 }: {
   method?: Method;
   cache?: "no-store" | "force-cache";
   path?: string;
   params?: Params;
+  next?: NextFetchRequestConfig;
   headers?: HeadersInit;
   body?: Params;
 }) => {
@@ -42,6 +44,7 @@ const getFetchRequest = async <Response, Params = undefined>({
       //접속 요청을 보내면 데이터캐시는 기존에 있던 stale(상한) 데이터라도 빠르게 보내주고 백엔드 서버로 다시 불러와서
       //최신 데이터를 다시 캐싱해서 다시 보낸다.
       //next: {tags: ["a"]} 요청이 들어왔을 때 데이터를 최신화 함
+      next,
       cache,
       headers: {
         "Access-Control-Allow-Origin": "*",

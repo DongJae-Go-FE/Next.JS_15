@@ -7,10 +7,9 @@ import "./globals.css";
 import Header from "@/components/Header";
 import QueryProvider from "@/components/_clientComponents/QueryProvider/QueryProvider";
 
-export const pretendard = localFont({
+const pretendard = localFont({
   src: "fonts/PretendardVariable.woff2",
   display: "swap",
-  weight: "45 920",
 });
 
 export const metadata: Metadata = {

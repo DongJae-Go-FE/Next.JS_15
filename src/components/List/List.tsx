@@ -32,7 +32,7 @@ export default function List({
     );
   }
 
-  let scrollStyle = "max-h-[calc(100% - 108px)] overflow-auto";
+  const scrollStyle = "max-h-[calc(100% - 108px)] overflow-auto";
 
   return (
     <ul className={isScroll ? scrollStyle : ""}>

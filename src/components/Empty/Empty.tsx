@@ -15,7 +15,7 @@ export interface Props extends HTMLAttributes<HTMLDivElement> {
 const Empty: FC<Props> = ({
   icons,
   description = "Description",
-  size = "md",
+  // size = "md",
   className,
   ...props
 }) => {
