@@ -5,7 +5,13 @@ type Method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
 const base_url = process.env.NEXT_PUBLIC_BACKEND_API as string;
 
-const getFetchRequest = async <Response, Params = undefined>({
+export type CommonResponse<T> = {
+  code: number;
+  message: string;
+  body: T;
+};
+
+const getFetchRequest = async <Response = any, Params = undefined>({
   method = "GET",
   cache,
   next,
@@ -19,26 +25,26 @@ const getFetchRequest = async <Response, Params = undefined>({
   headers?: HeadersInit;
   body?: Params;
 }) => {
+  let params = "";
+
+  if (config?.params) {
+    const filtered = { ...config.params };
+    Object.entries(filtered).forEach(([key, value]) => {
+      if (value === undefined) {
+        delete filtered[key as keyof typeof filtered];
+      }
+    });
+    params = `?${queryString.stringify(filtered)}`;
+  }
+
   try {
-    let params = "";
-
-    if (config?.params) {
-      const filtered = { ...config.params };
-      Object.entries(filtered).forEach(([key, value]) => {
-        if (value === undefined) {
-          delete filtered[key as keyof typeof filtered];
-        }
-      });
-      params = `?${queryString.stringify(filtered)}`;
-    }
-
     const response = await fetch(`${base_url}${config.path}${params}`, {
       method,
       /**
-      next cache options
-      - no-store : 저장을 하지 않는다. 아무런 캐싱 미동작, 무조건 페칭 발생 // 기본값
-      - force-cache : no-store와 반대, // 데이터 캐시 안에 이미 값이 있으면 데이터 캐시에서 다시 보낸다. // 한번 호출 후 다시 부르지 않음
-      */
+        next cache options
+        - no-store : 저장을 하지 않는다. 아무런 캐싱 미동작, 무조건 페칭 발생 // 기본값
+        - force-cache : no-store와 반대, // 데이터 캐시 안에 이미 값이 있으면 데이터 캐시에서 다시 보낸다. // 한번 호출 후 다시 부르지 않음
+        */
       // cache: "force-cache",
 
       //next: {revalidate: 3} - 특정 시간을 주기로 캐시를 업데이트 함, 그니깐 캐싱한 데이터를 3초 주기로 리페치를 한다.
@@ -52,21 +58,18 @@ const getFetchRequest = async <Response, Params = undefined>({
         "Content-type": "application/json;charset=utf-8",
         ...config?.headers,
       },
-      body: JSON.stringify(config.body),
+      ...(config.body && config.body),
     });
 
-    const responseData = response.json();
+    let json = {
+      code: response.status,
+      message: response.statusText,
+      body: await response.json(),
+    };
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        notFound();
-      }
-      throw `[${response.status}] 에러가 발생했습니다.`;
-    }
-
-    return responseData as Response;
+    return json as CommonResponse<Response>;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 };
 

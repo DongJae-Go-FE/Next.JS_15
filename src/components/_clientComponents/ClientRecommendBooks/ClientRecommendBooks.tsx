@@ -19,7 +19,7 @@ export default function ClientRecommendBooks() {
 
   return (
     <List
-      items={data?.map((props, index) => {
+      items={data?.body?.map((props, index) => {
         return <BookItem side="client" key={index} {...props} />;
       })}
       isLodaing={isLoading}

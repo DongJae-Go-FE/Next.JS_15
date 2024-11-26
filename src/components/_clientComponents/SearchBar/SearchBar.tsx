@@ -4,6 +4,8 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 import { useState, useEffect, KeyboardEvent } from "react";
 
+import useDebounce from "@/Hook/useDebounce";
+
 export default function SearchBar({ side }: { side: "server" | "client" }) {
   const searchParams = useSearchParams(); // 빌드 타임에 인덱스 페이지를 정적으로 생성하다가
   //현재 브라우저에서 쿼리 스트링의 값을 가져오는 역활을 하는데 빌드 타임에는 쿼리 스트링이 없다.
@@ -32,6 +34,10 @@ export default function SearchBar({ side }: { side: "server" | "client" }) {
     setSearch("");
     push(`/${side}/search`);
   };
+
+  //추천 검색어에 넣자
+  const debounceSearch = useDebounce<string>({ value: search });
+  console.log(debounceSearch);
 
   return (
     <div className="sticky top-0 mb-9 flex h-12 w-full gap-x-1 bg-white">

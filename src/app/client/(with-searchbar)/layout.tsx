@@ -9,7 +9,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <Suspense fallback={<>...Loading</>}>
             <SearchBar side="client" />
           </Suspense>
-
           {children}
         </div>
       </div>

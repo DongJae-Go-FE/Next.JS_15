@@ -16,7 +16,7 @@ export default async function ServerSearchBooks({ query }: { query?: string }) {
 
   return (
     <List
-      items={data?.map((props, index) => {
+      items={data?.body?.map((props, index) => {
         return <BookItem side="server" key={index} {...props} />;
       })}
     />
