@@ -1,4 +1,4 @@
-import ServerSearchBooks from "@/components/_serverCompnents/ServerSearchBooks";
+import ServerSearchBooks from "@/components/_serverComponents/ServerSearchBooks";
 
 //리액트 서버 컴포넌트이기 때문 async를 붙일 수 있다
 export default async function page({

@@ -4,7 +4,7 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 import { useState, useEffect, KeyboardEvent } from "react";
 
-import useDebounce from "@/Hook/useDebounce";
+// import useDebounce from "@/Hook/useDebounce";
 
 export default function SearchBar({ side }: { side: "server" | "client" }) {
   const searchParams = useSearchParams(); // 빌드 타임에 인덱스 페이지를 정적으로 생성하다가
@@ -36,8 +36,8 @@ export default function SearchBar({ side }: { side: "server" | "client" }) {
   };
 
   //추천 검색어에 넣자
-  const debounceSearch = useDebounce<string>({ value: search });
-  console.log(debounceSearch);
+  // const debounceSearch = useDebounce<string>({ value: search });
+  // console.log(debounceSearch);
 
   return (
     <div className="sticky top-0 mb-9 flex h-12 w-full gap-x-1 bg-white">

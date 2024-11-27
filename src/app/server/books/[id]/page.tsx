@@ -1,4 +1,9 @@
-import ServerBookInfo from "@/components/_serverCompnents/ServerBookInfo";
+import ServerBookInfo from "@/components/_serverComponents/ServerBookInfo";
+
+/**
+ * prams page에서 없는 params로 접근할 경우 자동으로 404로 던져줌
+ */
+//export const dynamicParams = false;
 
 //동적 경로 페이지를 정적 페이지로 바꿔 주려면 아래 함수명으로 만들고 스트링 타입의 객체를 배열로 만든다.
 //빌드 타임에 넥스트 서버가 정적인 값들을 읽어서 정적인 페이지를 빌드 타임에 만든다.

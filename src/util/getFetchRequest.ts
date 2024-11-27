@@ -1,4 +1,3 @@
-import { notFound } from "next/navigation";
 import queryString from "querystring";
 
 type Method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
@@ -11,7 +10,7 @@ export type CommonResponse<T> = {
   body: T;
 };
 
-const getFetchRequest = async <Response = any, Params = undefined>({
+const getFetchRequest = async <Response, Params = undefined>({
   method = "GET",
   cache,
   next,
@@ -61,7 +60,7 @@ const getFetchRequest = async <Response = any, Params = undefined>({
       ...(config.body && config.body),
     });
 
-    let json = {
+    const json = {
       code: response.status,
       message: response.statusText,
       body: await response.json(),

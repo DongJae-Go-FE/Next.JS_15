@@ -5,7 +5,7 @@ export default async function Login() {
 
   return (
     <div className="relative h-[100dvh] w-[100dvw] bg-gray-300">
-      <div className="postion-center min-h-[400px] w-[400px] rounded-2xl bg-white p-5">
+      <div className="position-center min-h-[400px] w-[400px] rounded-2xl bg-white p-5">
         <h2 className="text-2xl font-bold text-gray-900">서버 로그인</h2>
         <form action="">
           <ul className="mb-12 mt-6 flex flex-col gap-y-6">

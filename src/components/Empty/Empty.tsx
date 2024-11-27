@@ -19,7 +19,7 @@ const Empty: FC<Props> = ({
   className,
   ...props
 }) => {
-  const classList = ["text-center", "postion-center"];
+  const classList = ["text-center", "position-center"];
 
   if (className) {
     classList.push(className);

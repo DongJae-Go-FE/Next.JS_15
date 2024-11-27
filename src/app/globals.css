@@ -23,11 +23,10 @@ h2 {
 }
 
 @layer components {
-  .postion-center {
+  .position-center {
     @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform;
   }
-
-  .accesibility-hidden {
+  .accessibility-hidden {
     @apply absolute -m-[1px] h-[1px] w-[1px] overflow-hidden;
   }
 }

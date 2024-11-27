@@ -1,7 +1,8 @@
 "use client";
-import { notFound } from "next/navigation";
 
 import Image from "next/image";
+import { notFound } from "next/navigation";
+
 import { useQuery } from "@tanstack/react-query";
 
 import { BookData } from "@/types";
@@ -27,9 +28,8 @@ export default function ClientBookInfo({ id }: { id: string | string[] }) {
       </div>
     );
   }
-
   if (data?.code === 404) {
-    notFound();
+    return notFound();
   }
 
   return (

@@ -1,5 +1,5 @@
-import ServerRecommendBooks from "@/components/_serverCompnents/ServerRecommendBooks";
-import ServerRegisteredAllBooks from "@/components/_serverCompnents/ServerRegisteredAllBooks";
+import ServerRecommendBooks from "@/components/_serverComponents/ServerRecommendBooks";
+import ServerRegisteredAllBooks from "@/components/_serverComponents/ServerRegisteredAllBooks";
 
 export default async function Home() {
   return (

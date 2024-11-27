@@ -1,5 +1,5 @@
-import { notFound } from "next/navigation";
 import Image from "next/image";
+import { notFound } from "next/navigation";
 
 import { BookData } from "@/types";
 import getFetchRequest from "@/util/getFetchRequest";
@@ -31,7 +31,7 @@ export default async function ServerBookInfo({
   }
 
   if (data?.code === 404) {
-    notFound();
+    return notFound();
   }
 
   return (
@@ -45,7 +45,9 @@ export default async function ServerBookInfo({
         priority
         className="m-auto"
       />
-      <h3 className="mb-1 mt-7 text-lg font-bold">{data?.body?.title || "-"}</h3>
+      <h3 className="mb-1 mt-7 text-lg font-bold">
+        {data?.body?.title || "-"}
+      </h3>
       <p className="my-2 text-gray-500">{data?.body?.subTitle || "-"}</p>
       <p className="my-2 text-gray-500">
         {data?.body?.author || "-"} | {data?.body?.publisher || "-"}
