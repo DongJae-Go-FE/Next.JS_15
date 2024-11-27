@@ -3,6 +3,7 @@ import ServerBookInfo from "@/components/_serverComponents/ServerBookInfo";
 /**
  * prams page에서 없는 params로 접근할 경우 자동으로 404로 던져줌
  */
+//레이아웃 세그먼트 옵션
 //export const dynamicParams = false;
 
 //동적 경로 페이지를 정적 페이지로 바꿔 주려면 아래 함수명으로 만들고 스트링 타입의 객체를 배열로 만든다.
@@ -17,6 +18,8 @@ export function generateStaticParams() {
 //페이지 캐싱을 설정안해도 무조건 정적인 페이지 캐싱으로 설정이 된다.
 //getStaticPath랑 비슷 페이지 라우터에서
 //3번 뿐만 아니라 4번도 실시간으로 풀라우터캐시로 저장
+
+//여기까지를 라우터 세그먼트 옵션
 
 export default async function page({
   params,

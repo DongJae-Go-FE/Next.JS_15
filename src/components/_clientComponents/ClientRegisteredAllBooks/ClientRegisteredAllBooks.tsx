@@ -22,7 +22,7 @@ export default function ClientRegisteredAllBooks() {
       items={data?.body?.map((props, index) => {
         return <BookItem side="client" key={index} {...props} />;
       })}
-      isLodaing={isLoading}
+      isLoading={isLoading}
     />
   );
 }

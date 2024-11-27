@@ -5,7 +5,6 @@ import ClientBookInfo from "@/components/_clientComponents/ClientBookInfo";
 export function generateStaticParams() {
   return [{ id: "1" }, { id: "2" }, { id: "3" }];
 }
-// export const dynamicParams = false;
 
 export default async function page({
   params,

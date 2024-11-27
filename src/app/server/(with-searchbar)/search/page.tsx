@@ -1,6 +1,7 @@
+import { Suspense } from "react";
 import ServerSearchBooks from "@/components/_serverComponents/ServerSearchBooks";
+import Spinner from "@/components/Spinner";
 
-//리액트 서버 컴포넌트이기 때문 async를 붙일 수 있다
 export default async function page({
   searchParams,
 }: {
@@ -13,7 +14,18 @@ export default async function page({
       <section>
         <h2>검색 결과</h2>
       </section>
-      <ServerSearchBooks query={q} />
+      <Suspense
+        key={q} //이값이 변경 될 때 마다 키캆이 바뀔 때마다 새로 그려라
+        fallback={
+          <div className="relative h-[474px] w-full">
+            <Spinner />
+          </div>
+        }
+      >
+        <ServerSearchBooks query={q || ""} />
+      </Suspense>
     </div>
   );
 }
+
+//서스펜트로 컴포넌트를 감싸면 해당 컴포넌트는 스트리밍한다

@@ -26,7 +26,7 @@ export default function ClientSearchBooks({ query }: { query?: string }) {
       items={data?.body?.map((props, index) => {
         return <BookItem side="client" key={index} {...props} />;
       })}
-      isLodaing={isLoading}
+      isLoading={isLoading}
     />
   );
 }

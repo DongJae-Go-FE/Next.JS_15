@@ -5,18 +5,18 @@ import BookItem from "../BookItem/BookItem";
 
 export type ListType = {
   items?: ReactNode[];
-  isLodaing?: boolean;
+  isLoading?: boolean;
   isScroll?: boolean;
   isFetchingNextPage?: boolean;
 };
 
 export default function List({
   items,
-  isLodaing,
+  isLoading,
   isScroll,
   isFetchingNextPage,
 }: ListType) {
-  if (isLodaing) {
+  if (isLoading) {
     return (
       <div className="relative h-[474px] w-full">
         <Spinner />

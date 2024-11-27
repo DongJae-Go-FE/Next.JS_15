@@ -1,16 +1,72 @@
+import { Suspense } from "react";
+
 import ServerRecommendBooks from "@/components/_serverComponents/ServerRecommendBooks";
 import ServerRegisteredAllBooks from "@/components/_serverComponents/ServerRegisteredAllBooks";
+
+import BookItem from "@/components/BookItem/BookItem";
+
+export const dynamic = "force-dynamic";
+//특정 페이지의 유형을 강제로 Static, Dynamic 페이지로 설정
+//1. auto - 기본값, 아무것도 강제하지 않음, 생략해도 무방
+//2. force-dynamic - 페이지로 강제로 Dynamic 페이지로 설정
+//3. force-state - 페이지를 강제로 Static페이졸 설정
+//4. error - 페이지를 강제로 static 페이지 설정(static으로 설정하면 안되는 이유가 있다면 빌드 오류)
+//정말 특별한 상황 아니면 권유하지 않는다.
 
 export default async function Home() {
   return (
     <div>
       <section className="mb-20">
         <h2>지금 추천하는 도서</h2>
-        <ServerRecommendBooks />
+        <Suspense
+          fallback={
+            <div className="relative h-[474px] w-full">
+              {[0, 1, 2].map((_, index) => {
+                return (
+                  <BookItem
+                    id={0}
+                    author=""
+                    coverImgUrl=""
+                    description=""
+                    publisher=""
+                    subTitle=""
+                    title=""
+                    key={index}
+                    isLoading
+                  />
+                );
+              })}
+            </div>
+          }
+        >
+          <ServerRecommendBooks />
+        </Suspense>
       </section>
       <section>
         <h2>등록된 모든 도서</h2>
-        <ServerRegisteredAllBooks />
+        <Suspense
+          fallback={
+            <div className="relative h-[474px] w-full">
+              {[0, 1, 2].map((_, index) => {
+                return (
+                  <BookItem
+                    id={0}
+                    author=""
+                    coverImgUrl=""
+                    description=""
+                    publisher=""
+                    subTitle=""
+                    title=""
+                    key={index}
+                    isLoading
+                  />
+                );
+              })}
+            </div>
+          }
+        >
+          <ServerRegisteredAllBooks />
+        </Suspense>
       </section>
     </div>
   );
