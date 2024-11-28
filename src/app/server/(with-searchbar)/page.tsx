@@ -1,9 +1,7 @@
-import { Suspense } from "react";
-
 import ServerRecommendBooks from "@/components/_serverComponents/ServerRecommendBooks";
 import ServerRegisteredAllBooks from "@/components/_serverComponents/ServerRegisteredAllBooks";
 
-import Skeleton from "@/components/Skeleton/Skeleton";
+import SuspenseSkeleton from "@/components/SuspenseSkeleton";
 
 export const dynamic = "force-dynamic";
 //특정 페이지의 유형을 강제로 Static, Dynamic 페이지로 설정
@@ -18,27 +16,15 @@ export default async function Home() {
     <div>
       <section className="mb-20">
         <h2>지금 추천하는 도서</h2>
-        <Suspense
-          fallback={
-            <div className="relative h-[474px] w-full">
-              <Skeleton count={3} />
-            </div>
-          }
-        >
+        <SuspenseSkeleton>
           <ServerRecommendBooks />
-        </Suspense>
+        </SuspenseSkeleton>
       </section>
       <section>
         <h2>등록된 모든 도서</h2>
-        <Suspense
-          fallback={
-            <div className="relative h-[474px] w-full">
-              <Skeleton count={3} />
-            </div>
-          }
-        >
+        <SuspenseSkeleton>
           <ServerRegisteredAllBooks />
-        </Suspense>
+        </SuspenseSkeleton>
       </section>
     </div>
   );

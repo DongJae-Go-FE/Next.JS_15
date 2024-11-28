@@ -73,7 +73,6 @@ export default function SearchBar({ side }: { side: "server" | "client" }) {
           className="disabled:bg-gray-300"
           color="red"
           type="button"
-          disabled={!search || queryString === search}
           onClick={handleReset}
         >
           초기화

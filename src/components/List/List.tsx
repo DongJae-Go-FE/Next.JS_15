@@ -1,5 +1,4 @@
 import { Fragment, ReactNode } from "react";
-import Spinner from "../Spinner";
 import Empty from "../Empty";
 import Skeleton from "../Skeleton/Skeleton";
 
@@ -19,7 +18,7 @@ export default function List({
   if (isLoading) {
     return (
       <div className="relative h-[474px] w-full">
-        <Spinner />
+        <Skeleton count={3} />
       </div>
     );
   }
