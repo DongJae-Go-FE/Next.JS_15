@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import ServerSearchBooks from "@/components/_serverComponents/ServerSearchBooks";
-import Spinner from "@/components/Spinner";
+import SuspenseSpinner from "@/components/SuspenseSpinner";
 
 export default async function page({
   searchParams,
@@ -16,11 +16,7 @@ export default async function page({
       </section>
       <Suspense
         key={q} //이값이 변경 될 때 마다 키캆이 바뀔 때마다 새로 그려라
-        fallback={
-          <div className="relative h-[474px] w-full">
-            <Spinner />
-          </div>
-        }
+        fallback={<SuspenseSpinner />}
       >
         <ServerSearchBooks query={q || ""} />
       </Suspense>

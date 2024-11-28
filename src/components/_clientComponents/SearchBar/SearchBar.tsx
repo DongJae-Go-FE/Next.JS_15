@@ -4,6 +4,8 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
 import { useState, useEffect, KeyboardEvent } from "react";
 
+import Button from "@/components/Button";
+
 // import useDebounce from "@/Hook/useDebounce";
 
 export default function SearchBar({ side }: { side: "server" | "client" }) {
@@ -51,9 +53,10 @@ export default function SearchBar({ side }: { side: "server" | "client" }) {
           handleKeyDown(e);
         }}
       />
-      <button
-        className="whitespace-nowrap rounded bg-black px-4 font-medium text-white disabled:bg-gray-300"
+      <Button
+        className="disabled:bg-gray-300"
         type="button"
+        color="black"
         disabled={!search || queryString === search}
         onClick={() => {
           if (!search || queryString === search) {
@@ -64,15 +67,17 @@ export default function SearchBar({ side }: { side: "server" | "client" }) {
         }}
       >
         검색
-      </button>
+      </Button>
       {pathname.includes("search") && (
-        <button
-          className="whitespace-nowrap rounded bg-red-500 px-4 font-medium text-white disabled:bg-gray-300"
+        <Button
+          className="disabled:bg-gray-300"
+          color="red"
           type="button"
+          disabled={!search || queryString === search}
           onClick={handleReset}
         >
           초기화
-        </button>
+        </Button>
       )}
     </div>
   );

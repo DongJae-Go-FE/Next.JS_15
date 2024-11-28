@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import ServerRecommendBooks from "@/components/_serverComponents/ServerRecommendBooks";
 import ServerRegisteredAllBooks from "@/components/_serverComponents/ServerRegisteredAllBooks";
 
-import BookItem from "@/components/BookItem/BookItem";
+import Skeleton from "@/components/Skeleton/Skeleton";
 
 export const dynamic = "force-dynamic";
 //특정 페이지의 유형을 강제로 Static, Dynamic 페이지로 설정
@@ -21,21 +21,7 @@ export default async function Home() {
         <Suspense
           fallback={
             <div className="relative h-[474px] w-full">
-              {[0, 1, 2].map((_, index) => {
-                return (
-                  <BookItem
-                    id={0}
-                    author=""
-                    coverImgUrl=""
-                    description=""
-                    publisher=""
-                    subTitle=""
-                    title=""
-                    key={index}
-                    isLoading
-                  />
-                );
-              })}
+              <Skeleton count={3} />
             </div>
           }
         >
@@ -47,21 +33,7 @@ export default async function Home() {
         <Suspense
           fallback={
             <div className="relative h-[474px] w-full">
-              {[0, 1, 2].map((_, index) => {
-                return (
-                  <BookItem
-                    id={0}
-                    author=""
-                    coverImgUrl=""
-                    description=""
-                    publisher=""
-                    subTitle=""
-                    title=""
-                    key={index}
-                    isLoading
-                  />
-                );
-              })}
+              <Skeleton count={3} />
             </div>
           }
         >

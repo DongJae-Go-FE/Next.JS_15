@@ -1,7 +1,7 @@
 import { Fragment, ReactNode } from "react";
 import Spinner from "../Spinner";
 import Empty from "../Empty";
-import BookItem from "../BookItem/BookItem";
+import Skeleton from "../Skeleton/Skeleton";
 
 export type ListType = {
   items?: ReactNode[];
@@ -41,21 +41,7 @@ export default function List({
       })}
       {isFetchingNextPage && (
         <Fragment>
-          {[0, 1, 2].map((_, index) => {
-            return (
-              <BookItem
-                id={0}
-                author=""
-                coverImgUrl=""
-                description=""
-                publisher=""
-                subTitle=""
-                title=""
-                key={index}
-                isLoading
-              />
-            );
-          })}
+          <Skeleton count={3} />
         </Fragment>
       )}
     </ul>
