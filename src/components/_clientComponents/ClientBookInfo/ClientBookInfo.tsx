@@ -10,7 +10,7 @@ import getFetchRequest from "@/util/getFetchRequest";
 import ClientEditor from "../ClientEditor";
 
 export default function ClientBookInfo({ id }: { id: string | string[] }) {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ["bookInfo", id],
     queryFn: () =>
       getFetchRequest<BookData>({
@@ -28,13 +28,13 @@ export default function ClientBookInfo({ id }: { id: string | string[] }) {
         <div className="h-[132px] w-full rounded-md bg-gray-200" />
         <div className="mt-5 h-10 w-full rounded-md bg-gray-200" />
         <div className="mt-3 h-[90px] w-full rounded-md bg-gray-200" />
-        <div className="flex h-12 w-full justify-end mt-3">
+        <div className="mt-3 flex h-12 w-full justify-end">
           <div className="h-12 w-[87px] rounded-md bg-gray-200" />
         </div>
       </div>
     );
   }
-  if (data?.code === 404) {
+  if (error?.message.includes("404")) {
     return notFound();
   }
 

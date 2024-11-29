@@ -1,4 +1,5 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import { startTransition, useEffect, useState } from "react";
 
@@ -25,7 +26,6 @@ export default function Error({
 
   return (
     <div className="flex h-[100dvh] items-center justify-center">
-      검색과정 오류
       <Empty size="md" description={`${errorText} 오류`} />
       {/* <button
         className="relative top-2 h-10 rounded bg-black px-4 text-white"

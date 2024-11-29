@@ -1,8 +1,10 @@
 "use client";
-
-import { startTransition, useEffect, useState } from "react";
-import Empty from "@/components/Empty";
 import { useRouter } from "next/navigation";
+import { startTransition, useEffect, useState } from "react";
+
+import Empty from "@/components/Empty";
+import Button from "@/components/Button";
+
 
 //모든 환경에서 발생할 수 있기 때문에 클라이언트로 만든다.
 
@@ -23,7 +25,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex h-[calc(100%-90px)] items-center justify-center">
+    <div className="flex h-[100dvh] items-center justify-center">
       <Empty size="md" description={`${errorText} 오류`} />
       {/* <button
         className="relative top-2 h-10 rounded bg-black px-4 text-white"
@@ -39,8 +41,8 @@ export default function Error({
       >
         다시 시도
       </button> */}
-      <button
-        className="relative top-2 h-10 rounded bg-black px-4 text-white"
+      <Button
+        className="relative top-20"
         type="button"
         onClick={() => {
           startTransition(() => {
@@ -51,7 +53,7 @@ export default function Error({
         }}
       >
         다시 시도
-      </button>
+      </Button>
     </div>
   );
 }

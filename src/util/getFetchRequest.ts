@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import queryString from "querystring";
 
 type Method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
@@ -58,6 +59,13 @@ const getFetchRequest = async <Response, Params = undefined>({
     },
     body: JSON.stringify(config.body),
   });
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      notFound();
+    }
+    throw new Error();
+  }
 
   const json = {
     code: response.status,

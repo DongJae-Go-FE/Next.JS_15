@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { notFound } from "next/navigation";
 
 import { BookData } from "@/types";
 import getFetchRequest from "@/util/getFetchRequest";
 import ServerEditor from "../ServerEditor";
+import ServerReview from "../ServerReview";
 
 export default async function ServerBookInfo({ id }: { id: string }) {
   const data = await getFetchRequest<BookData>({
@@ -11,10 +11,6 @@ export default async function ServerBookInfo({ id }: { id: string }) {
     method: "GET",
     cache: "force-cache",
   });
-
-  if (data?.code === 404) {
-    return notFound();
-  }
 
   return (
     <div className="min-h-[800px] w-[800px] rounded-2xl bg-white p-7 shadow-md">
@@ -38,6 +34,7 @@ export default async function ServerBookInfo({ id }: { id: string }) {
         {data?.body?.description || "-"}
       </div>
       <ServerEditor bookId={id} />
+      <ServerReview bookId={id} />
     </div>
   );
 }

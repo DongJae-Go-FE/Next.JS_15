@@ -28,3 +28,26 @@ export interface BookData {
    */
   coverImgUrl: string;
 }
+
+export interface BookReview {
+  /**
+   * 아이디
+   */
+  id: number;
+  /**
+   * 콘텐츠
+   */
+  content: string;
+  /**
+   * 작성자
+   */
+  author: string;
+  /**
+   * 만든 날짜
+   */
+  createdAt: string;
+  /**
+   * 책 아이디
+   */
+  bookId: string;
+}
