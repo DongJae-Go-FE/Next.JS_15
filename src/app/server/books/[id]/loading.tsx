@@ -1,3 +1,5 @@
+import ReviewSkeleton from "@/components/ReviewSkeleton";
+
 export default function Loading() {
   return (
     <main className="flex items-center justify-center">
@@ -11,6 +13,9 @@ export default function Loading() {
         <div className="mt-3 h-[90px] w-full rounded-md bg-gray-200" />
         <div className="mt-3 flex h-12 w-full justify-end">
           <div className="h-12 w-[87px] rounded-md bg-gray-200" />
+        </div>
+        <div className="mt-9 flex w-full flex-col gap-y-2">
+          <ReviewSkeleton count={4} />
         </div>
       </div>
     </main>

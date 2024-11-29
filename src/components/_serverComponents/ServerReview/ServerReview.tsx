@@ -6,6 +6,7 @@ export default async function ServerReview({ bookId }: { bookId: string }) {
     path: `/review/book/${bookId}`,
     method: "GET",
     cache: "force-cache",
+    next: { tags: [`review-${bookId}`] },
   });
 
   return (

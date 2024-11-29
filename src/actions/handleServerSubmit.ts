@@ -1,5 +1,6 @@
 "use server";
-import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
+import { expireTag } from "next/cache";
 
 import getFetchRequest from "@/util/getFetchRequest";
 
@@ -30,9 +31,22 @@ const handleServerSubmit = async (formData: FormData) => {
         author,
       },
     });
-    //해당 페이지 캐시 재생성 모든 데이터 새로고침
+    //해당 페이지 캐시 재생성 모든 데이터 새로고침 쿼리 리패치 같은
     //풀 라우터 캐시도 삭제임
-    revalidatePath(`/book/${bookId}`);
+    //1. 특정 페이지만 재검증
+    // revalidatePath(`/book/${bookId}`);
+
+    //2. 특정 경로의 모든 동적 페이지를 재검증
+    // revalidatePath(`/book/[id]`,"page");
+
+    //3. 특정 레이아웃을 갖는 모든 페이지 재검증
+    // revalidatePath(`/(with-searchbar)`,"layout");
+
+    //4. 모든 데이터를 재검증
+    // revalidatePath(`/`,"layout");
+
+    // expirePath(`/book/${bookId}`);
+    expireTag(`review-${bookId}`); //해당 api fetch next tag에 지정한 이름으로 재검증가능 가장 겸제적
   } catch (e) {
     console.error(e);
     return;
