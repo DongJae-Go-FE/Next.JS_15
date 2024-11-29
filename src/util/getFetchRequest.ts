@@ -56,7 +56,7 @@ const getFetchRequest = async <Response, Params = undefined>({
       "Content-type": "application/json;charset=utf-8",
       ...config?.headers,
     },
-    ...(config.body && config.body),
+    body: JSON.stringify(config.body),
   });
 
   const json = {

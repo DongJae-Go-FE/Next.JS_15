@@ -24,7 +24,7 @@ export function generateStaticParams() {
 export default async function page({
   params,
 }: {
-  params: Promise<{ id: string | string[] }>; //기본적으로 dynamic 페이지롱 생성
+  params: Promise<{ id: string }>; //기본적으로 dynamic 페이지롱 생성
 }) {
   const { id } = await params;
 

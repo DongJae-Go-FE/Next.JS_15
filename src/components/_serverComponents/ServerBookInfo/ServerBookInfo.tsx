@@ -5,11 +5,7 @@ import { BookData } from "@/types";
 import getFetchRequest from "@/util/getFetchRequest";
 import ServerEditor from "../ServerEditor";
 
-export default async function ServerBookInfo({
-  id,
-}: {
-  id: string | string[];
-}) {
+export default async function ServerBookInfo({ id }: { id: string }) {
   const data = await getFetchRequest<BookData>({
     path: `/book/${id}`,
     method: "GET",
@@ -41,7 +37,7 @@ export default async function ServerBookInfo({
       <div className="max-h-[132px] overflow-auto rounded-md bg-gray-300 p-3">
         {data?.body?.description || "-"}
       </div>
-      <ServerEditor />
+      <ServerEditor bookId={id} />
     </div>
   );
 }
