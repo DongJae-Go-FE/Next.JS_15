@@ -1,12 +1,31 @@
+"use client";
+
+import { useActionState, useEffect } from "react";
+//폼태그의 상태를 핸들링 하는 훅
 import Button from "../../Button";
 import Input from "../../Input";
 import Textarea from "../../Textarea/Textarea";
+
 import { handleServerSubmit } from "@/actions/handleServerSubmit";
 
+//특히 폼태그를 하는 것들은 서버 보다는 클라이언트 컴포넌트로 추천한다.
+
 export default function ServerEditor({ bookId }: { bookId: string }) {
+  //상태, 폼액션, 현재 폼의 로딩 상태
+  const [state, formAction, isPending] = useActionState(
+    handleServerSubmit, // 서버액션
+    null, // 초기상태
+  );
+
+  useEffect(() => {
+    if (state && !state.status) {
+      alert(state.error);
+    }
+  }, [state]);
+
   return (
     <section className="mt-5 w-full">
-      <form action={handleServerSubmit}>
+      <form action={formAction}>
         <ul className="flex flex-col gap-y-2">
           <Input
             type="text"
@@ -25,6 +44,7 @@ export default function ServerEditor({ bookId }: { bookId: string }) {
               name="author"
               id="author"
               placeholder="작성자"
+              disabled={isPending}
               required
             />
           </li>
@@ -33,12 +53,15 @@ export default function ServerEditor({ bookId }: { bookId: string }) {
               name="content"
               id="content"
               placeholder="내용을 작성해주세요."
+              disabled={isPending}
               required
             />
           </li>
         </ul>
         <div className="mt-3 flex w-full justify-end">
-          <Button type="submit">작성하기</Button>
+          <Button disabled={isPending} type="submit">
+            {isPending ? "제출중.." : "진행하기"}
+          </Button>
         </div>
       </form>
     </section>

@@ -64,7 +64,7 @@ const getFetchRequest = async <Response, Params = undefined>({
     if (response.status === 404) {
       notFound();
     }
-    throw new Error();
+    throw new Error(response.statusText);
   }
 
   const json = {

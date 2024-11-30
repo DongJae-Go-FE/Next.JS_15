@@ -4,7 +4,8 @@ import { expireTag } from "next/cache";
 
 import getFetchRequest from "@/util/getFetchRequest";
 
-const handleServerSubmit = async (formData: FormData) => {
+//useActionState 쓰면 처음에 무조건 state가 온다.
+const handleServerSubmit = async (_: any, formData: FormData) => {
   const bookId = formData.get("bookId")?.toString();
   const content = formData.get("content")?.toString();
   const author = formData.get("author")?.toString();
@@ -18,8 +19,11 @@ const handleServerSubmit = async (formData: FormData) => {
   //보안상에서 유용
   //console.log(content, author);
 
-  if (!content || !author) {
-    return;
+  if (!bookId || !content || !author) {
+    return {
+      status: false,
+      error: "에러 내용",
+    };
   }
   try {
     await getFetchRequest({
@@ -47,9 +51,16 @@ const handleServerSubmit = async (formData: FormData) => {
 
     // expirePath(`/book/${bookId}`);
     expireTag(`review-${bookId}`); //해당 api fetch next tag에 지정한 이름으로 재검증가능 가장 겸제적
+
+    return {
+      status: true,
+      error: "",
+    };
   } catch (e) {
-    console.error(e);
-    return;
+    return {
+      status: false,
+      error: `에러 내용: ${e}`,
+    };
   }
 };
 
