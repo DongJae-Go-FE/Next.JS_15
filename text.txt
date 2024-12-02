@@ -227,3 +227,8 @@ Intercepting Route / 가로채는 라우트
 (..) - 점이 두개 부모 상위 경로
 (..)(..) 두단계 상위 경로
 (...) - app폴더 바로 밑에 폴더 라우팅
+
+
+
+ sudo npm i -g vercel
+  vercel login
