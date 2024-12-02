@@ -7,9 +7,9 @@ export default async function page() {
         <div className="flex h-full w-full flex-col items-center justify-center gap-y-2 overflow-auto">
           <h2>컴포넌트 렌더링 시점 선택</h2>
           <Button link="/server">서버 사이드</Button>
-          <Button color="red" link="/client">
+          {/* <Button color="red" link="/client">
             클라이언트 사이드
-          </Button>
+          </Button> */}
         </div>
       </div>
     </main>
