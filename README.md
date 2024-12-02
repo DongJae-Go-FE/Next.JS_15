@@ -1,3 +1,6 @@
+배포 URL 
+- <a href="https://labs-books-h1n75zurc-masterforce999s-projects.vercel.app/server" target="_blank">https://labs-books-h1n75zurc-masterforce999s-projects.vercel.app/server</a>
+
 도입 검토
 - Next.JS 15
 - React19
