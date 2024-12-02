@@ -8,7 +8,7 @@ const base_url = process.env.NEXT_PUBLIC_BACKEND_API as string;
 export type CommonResponse<T> = {
   code: number;
   message: string;
-  body: T;
+  body: T | undefined;
 };
 
 const getFetchRequest = async <Response, Params = undefined>({
@@ -64,16 +64,23 @@ const getFetchRequest = async <Response, Params = undefined>({
     if (response.status === 404) {
       notFound();
     }
-    throw new Error(response.statusText);
+    throw new Error(`[${response.status}] ${await response.text()}`);
   }
 
-  const json = {
+  const json: CommonResponse<Response> = {
     code: response.status,
     message: response.statusText,
-    body: await response.json(),
+    body:
+      method === "DELETE" && response.status === 204
+        ? undefined
+        : method === "DELETE"
+          ? await response
+              .text()
+              .then((text) => (text ? JSON.parse(text) : undefined))
+          : await response.json(),
   };
 
-  return json as CommonResponse<Response>;
+  return json;
 };
 
 export default getFetchRequest;

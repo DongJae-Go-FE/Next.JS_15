@@ -1,6 +1,15 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/server",
+        permanent: true,
+      },
+    ];
+  },
   //캐싱 여부 콘솔 체크
   logging: {
     fetches: {
