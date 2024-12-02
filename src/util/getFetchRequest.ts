@@ -3,7 +3,7 @@ import queryString from "querystring";
 
 type Method = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
-const base_url = process.env.NEXT_PUBLIC_BACKEND_API as string;
+const base_url = process.env.NEXT_PUBLIC_SERVER_API_URL as string;
 
 export type CommonResponse<T> = {
   code: number;
