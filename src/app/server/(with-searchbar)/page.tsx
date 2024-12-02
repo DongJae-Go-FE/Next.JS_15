@@ -1,3 +1,5 @@
+import { Metadata } from "next";
+
 import ServerRecommendBooks from "@/components/_serverComponents/ServerRecommendBooks";
 import ServerRegisteredAllBooks from "@/components/_serverComponents/ServerRegisteredAllBooks";
 
@@ -10,6 +12,17 @@ export const dynamic = "force-dynamic";
 //3. force-state - 페이지를 강제로 Static페이졸 설정
 //4. error - 페이지를 강제로 static 페이지 설정(static으로 설정하면 안되는 이유가 있다면 빌드 오류)
 //정말 특별한 상황 아니면 권유하지 않는다.
+
+//메타데이터 설정법
+export const metadata: Metadata = {
+  title: "LAB 도서",
+  description: "도서 검색 프로젝트 리스트",
+  openGraph: {
+    title: "LAB 도서",
+    description: "도서 검색 프로젝트 리스트",
+    images: ["/thumbnail.png"],
+  },
+};
 
 export default async function Home() {
   return (

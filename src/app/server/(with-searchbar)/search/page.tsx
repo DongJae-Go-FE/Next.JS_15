@@ -1,11 +1,33 @@
+import { Metadata } from "next";
+
 import { Suspense } from "react";
 import ServerSearchBooks from "@/components/_serverComponents/ServerSearchBooks";
 import SuspenseSpinner from "@/components/SuspenseSpinner";
 
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}): Promise<Metadata> {
+  //현재 페이지 메타 데이터를 동적으로 생성하는 역할
+
+  const { q } = await searchParams;
+
+  return {
+    title: `${q}: LAB 도서 리스트 검색 결과`,
+    description: `${q}: LAB 도서 리스트 검색 결과입니다.`,
+    openGraph: {
+      title: `${q}: LAB 도서 리스트 검색 결과`,
+      description: `${q}: LAB 도서 리스트 검색 결과입니다.`,
+      images: ["/thumbnail.png"],
+    },
+  };
+}
+
 export default async function page({
   searchParams,
 }: {
-  searchParams: Promise<{ q: string }>;
+  searchParams: Promise<{ q?: string }>;
 }) {
   const { q } = await searchParams;
 

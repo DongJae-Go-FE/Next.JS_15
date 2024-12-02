@@ -1,4 +1,8 @@
+import { Metadata } from "next";
 import ServerBookInfo from "@/components/_serverComponents/ServerBookInfo";
+
+import { BookData } from "@/types";
+import getFetchRequest from "@/util/getFetchRequest";
 
 /**
  * prams page에서 없는 params로 접근할 경우 자동으로 404로 던져줌
@@ -20,6 +24,33 @@ export function generateStaticParams() {
 //3번 뿐만 아니라 4번도 실시간으로 풀라우터캐시로 저장
 
 //여기까지를 라우터 세그먼트 옵션
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  //현재 페이지 메타 데이터를 동적으로 생성하는 역할
+
+  const { id } = await params;
+
+  const data = await getFetchRequest<BookData>({
+    path: `/book/${id}`,
+    method: "GET",
+    cache: "force-cache",
+  });
+  //리퀘스트 메모이제이션
+
+  return {
+    title: `${data.body?.title}- LAB 도서 리스트 상세 페이지`,
+    description: `${data.body?.description}`,
+    openGraph: {
+      title: `${data.body?.title}- LAB 도서 리스트 상세 페이지`,
+      description: `${data.body?.description}`,
+      images: [data.body?.coverImgUrl || ""],
+    },
+  };
+}
 
 export default async function page({
   params,
