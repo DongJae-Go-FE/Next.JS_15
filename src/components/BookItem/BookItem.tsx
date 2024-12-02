@@ -33,7 +33,11 @@ export default function BookItem({
 
   return (
     <article className="w-full border-b border-gray-300 p-3">
-      <Link href={`/${side}/books/${id}`} className="flex w-full gap-x-2">
+      <Link
+        href={`/${side}/books/${id}`}
+        scroll={false}
+        className="flex w-full gap-x-2"
+      >
         <div className="w-[100px]">
           <Image
             width={100}
