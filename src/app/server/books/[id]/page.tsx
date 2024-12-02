@@ -23,6 +23,18 @@ import getFetchRequest from "@/util/getFetchRequest";
 //getStaticPath랑 비슷 페이지 라우터에서
 //3번 뿐만 아니라 4번도 실시간으로 풀라우터캐시로 저장
 
+export async function generateStaticParams(): Promise<{ id: string }[]> {
+  const data = await getFetchRequest<BookData[]>({
+    path: "/book",
+    cache: "force-cache",
+  });
+
+  // data.body가 undefined일 경우 빈 배열을 반환하도록 수정
+  return data.body?.map((value) => ({
+    id: value.id.toString(),
+  })) || []; // data.body가 undefined일 경우 빈 배열 반환
+}
+
 //여기까지를 라우터 세그먼트 옵션
 
 export async function generateMetadata({
