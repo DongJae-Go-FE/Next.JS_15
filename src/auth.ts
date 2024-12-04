@@ -1,11 +1,9 @@
 import NextAuth from "next-auth";
-import bcrypt from "bcryptjs";
 
-import { MongoDBAdapter } from "@auth/mongodb-adapter";
-import client from "./util/database";
-import Credentials from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials";
 
 import { User } from "./model/user-model";
+import bcrypt from "bcryptjs";
 
 export const {
   handlers: { GET, POST },
@@ -13,26 +11,23 @@ export const {
   signIn,
   signOut,
 } = NextAuth({
-  adapter: MongoDBAdapter(client),
   session: {
     strategy: "jwt",
   },
   providers: [
-    Credentials({
+    CredentialsProvider({
       credentials: {
-        email: {},
-        password: {},
+        email: { label: "Email", type: "text" },
+        password: { label: "Password", type: "password" },
       },
-      authorize: async (credentials) => {
-        if (!credentials || !credentials.email || !credentials.password) {
-          return null;
-        }
+      async authorize(credentials) {
+        if (credentials === null) return null;
 
         try {
           const user = await User.findOne({
-            email: credentials.email,
+            email: credentials?.email,
           });
-
+          console.log(user);
           if (user) {
             const isMatch = await bcrypt.compare(
               credentials.password as string,
@@ -42,10 +37,10 @@ export const {
             if (isMatch) {
               return user;
             } else {
-              throw new Error("비밀번호가 일치하지 않습니다.");
+              throw new Error("Email or Password is not correct");
             }
           } else {
-            throw new Error("유저를 찾지 못했습니다.");
+            throw new Error("User not found");
           }
         } catch (error) {
           throw new Error(`${error}`);

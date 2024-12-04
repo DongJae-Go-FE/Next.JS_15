@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-
-import { handleSignUp } from "@/actions/handleSignUp";
+import { TEXT_SIGN_UP, TEXT_SIGN_UP_OK } from "@/const/const";
 
 export default function SingUpForm() {
   const liStyle = "flex w-full flex-col gap-y-1";
@@ -11,26 +10,44 @@ export default function SingUpForm() {
 
   const { push } = useRouter();
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-    const formData = new FormData(e.currentTarget);
+    if (confirm(TEXT_SIGN_UP)) {
+      try {
+        const formData = new FormData(event.currentTarget);
 
-    try {
-      const response = await handleSignUp(formData);
+        const name = formData.get("name");
+        const email = formData.get("email");
+        const password = formData.get("password");
 
-      if (!response?.ok) {
-        alert("에러입니다!");
-      } else {
-        push("/server");
+        const response = await fetch(`/api/auth/register`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+          }),
+        });
+
+        if (response.status === 201) {
+          alert(TEXT_SIGN_UP_OK);
+          push("/login");
+        }
+      } catch (e) {
+        if (e instanceof Error) {
+          console.error(e.message);
+        } else {
+          console.error("알 수 없는 오류가 발생했습니다.");
+        }
       }
-    } catch (error) {
-      console.error(error);
     }
-  };
-
+  }
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={handleSubmit}>
       <ul className="mb-12 mt-6 flex flex-col gap-y-6">
         <li className={liStyle}>
           <label htmlFor="name" className={labelStyle}>

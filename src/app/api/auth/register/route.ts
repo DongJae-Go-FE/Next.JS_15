@@ -1,13 +1,13 @@
 import { NextResponse, NextRequest } from "next/server";
 
 import bcrypt from "bcryptjs";
-import { dbComment } from "@/util/dbComment";
+import { dbConnect } from "@/util/dbConnect";
 import { CreateUser } from "@/queries/users";
 
 export async function POST(request: NextRequest) {
   const { name, email, password } = await request.json();
 
-  await dbComment();
+  await dbConnect();
 
   const hashedPassword = await bcrypt.hash(password, 5);
 

@@ -25,6 +25,6 @@ export async function doCredentialLogin(formData: FormData) {
 
     return response;
   } catch (error) {
-    throw new Error(`${error}`);
+    console.error(error);
   }
 }

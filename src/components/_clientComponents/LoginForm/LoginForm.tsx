@@ -1,35 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { doCredentialLogin } from "@/actions/loginActions";
 
-import { handleLogin } from "@/actions/handleLogin";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const liStyle = "flex w-full flex-col gap-y-1";
   const labelStyle = "font-bold";
   const inputStyle = "h-12 border rounded-md px-3";
 
-  const { push } = useRouter();
+  const router = useRouter();
+  const [error, setError] = useState("");
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const formData = new FormData(e.currentTarget);
-
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
     try {
-      const response = await handleLogin(formData);
+      const formData = new FormData(event.currentTarget);
 
-      if (response.error) {
-        alert("에러입니다!");
+      const response = await doCredentialLogin(formData);
+
+      if (!!response.error) {
+        console.error(response.error);
+        setError(response.error.message);
       } else {
-        push("/server");
+        router.push("/server");
       }
-    } catch (error) {
-      console.error(error);
-      alert("계정확인 필요");
+    } catch (e) {
+      console.error(e);
+      setError("계정정보가 틀립니다 확인해보세요");
     }
-  };
+  }
 
   return (
     <form onSubmit={onSubmit}>
