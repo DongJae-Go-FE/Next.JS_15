@@ -6,6 +6,8 @@ import ServerEditor from "../ServerEditor";
 import ServerReview from "../ServerReview";
 
 export default async function ServerBookInfo({ id }: { id: string }) {
+  const paragraphStyle = "my-2 text-gray-500";
+
   const data = await getFetchRequest<BookData>({
     path: `/book/${id}`,
     method: "GET",
@@ -26,8 +28,8 @@ export default async function ServerBookInfo({ id }: { id: string }) {
       <h3 className="mb-1 mt-7 text-lg font-bold">
         {data?.body?.title || "-"}
       </h3>
-      <p className="my-2 text-gray-500">{data?.body?.subTitle || "-"}</p>
-      <p className="my-2 text-gray-500">
+      <p className={paragraphStyle}>{data?.body?.subTitle || "-"}</p>
+      <p className={paragraphStyle}>
         {data?.body?.author || "-"} | {data?.body?.publisher || "-"}
       </p>
       <div className="max-h-[132px] overflow-auto rounded-md bg-gray-300 p-3">

@@ -21,11 +21,11 @@ export default function BookItem({
   if (isLoading) {
     return (
       <div className="flex w-full animate-pulse gap-x-2 border-b border-gray-300 p-3">
-        <div className="h-[133px] w-[100px] rounded-md bg-gray-200" />
+        <div className="skeleton-basic h-[133px] w-[100px]" />
         <div className="w-[calc(100% - 108px)] flex h-[133px] flex-col">
-          <div className="h-6 w-[150px] rounded-md bg-gray-200" />
-          <div className="mt-1 h-6 w-[280px] rounded-md bg-gray-200" />
-          <div className="mt-4 h-6 w-[200px] rounded-md bg-gray-200" />
+          <div className="skeleton-basic h-6 w-[150px]" />
+          <div className="skeleton-basic mt-1 h-6 w-[280px]" />
+          <div className="skeleton-basic mt-4 h-6 w-[200px]" />
         </div>
       </div>
     );

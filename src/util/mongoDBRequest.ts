@@ -1,6 +1,6 @@
-import { connectDB } from "./database";
+import client from "./database";
 
-export type MogoDBRequsetType = {
+export type MongoDBRequestType = {
   dbName: string;
   collectionName: string;
   url?: string;
@@ -9,17 +9,17 @@ export type MogoDBRequsetType = {
   body?: BodyInit;
 };
 
-export const MogoDBRequest = async ({
+export const MongoDBRequest = async ({
   dbName,
   collectionName,
   url,
   method,
   headers,
   body,
-}: MogoDBRequsetType) => {
+}: MongoDBRequestType) => {
   if (!url) {
-    const client = await connectDB;
-    const db = client.db(dbName);
+    const dbSetting = client;
+    const db = dbSetting.db(dbName);
     const result = await db.collection(collectionName).find().toArray();
 
     return result;
@@ -49,4 +49,4 @@ export const MogoDBRequest = async ({
   }
 };
 
-export default MogoDBRequest;
+export default MongoDBRequest;

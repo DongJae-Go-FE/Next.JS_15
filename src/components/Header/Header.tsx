@@ -1,6 +1,19 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function Header() {
+  const pathName = usePathname();
+
+  if (pathName.includes("login")) {
+    return null;
+  }
+
+  if (pathName.includes("signUp")) {
+    return null;
+  }
+
   const fontStyle = "font-medium text-black";
 
   return (
@@ -10,11 +23,6 @@ export default function Header() {
       </h1>
       <nav className="flex h-full w-full items-center">
         <ul className="flex gap-x-4">
-          {/* <li>
-            <Link href="/" className={fontStyle}>
-              메인
-            </Link>
-          </li> */}
           <li>
             <Link href="/server" className={fontStyle}>
               서버 컴포넌트 메인
@@ -25,16 +33,6 @@ export default function Header() {
               서버 컴포넌트 검색
             </Link>
           </li>
-          {/* <li>
-            <Link href="/client" className={fontStyle}>
-              클라이언트 컴포넌트 메인
-            </Link>
-          </li>
-          <li>
-            <Link href="/client/search" className={fontStyle}>
-              클라이언트 컴포넌트 검색
-            </Link>
-          </li> */}
         </ul>
       </nav>
     </header>

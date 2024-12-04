@@ -1,20 +1,37 @@
-import { MongoClient } from "mongodb";
+// This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
+import { MongoClient, ServerApiVersion } from "mongodb";
 
-let connectDB: Promise<MongoClient>;
-
-const url = process.env.MOGO_DB_URL;
-
-if (!url) {
-  throw new Error("몽고 디비 데이터 없어");
+if (!process.env.MONGO_DB_URL) {
+  throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
 }
+
+const uri = process.env.MONGO_DB_URL;
+const options = {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  },
+};
+
+let client: MongoClient;
 
 if (process.env.NODE_ENV === "development") {
-  if (!global._mongo) {
-    global._mongo = new MongoClient(url).connect();
+  // In development mode, use a global variable so that the value
+  // is preserved across module reloads caused by HMR (Hot Module Replacement).
+  const globalWithMongo = global as typeof globalThis & {
+    _mongoClient?: MongoClient;
+  };
+
+  if (!globalWithMongo._mongoClient) {
+    globalWithMongo._mongoClient = new MongoClient(uri, options);
   }
-  connectDB = global._mongo;
+  client = globalWithMongo._mongoClient;
 } else {
-  connectDB = new MongoClient(url).connect();
+  // In production mode, it's best to not use a global variable.
+  client = new MongoClient(uri, options);
 }
 
-export { connectDB };
+// Export a module-scoped MongoClient. By doing this in a
+// separate module, the client can be shared across functions.
+export default client;
