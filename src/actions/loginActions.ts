@@ -12,7 +12,7 @@ export async function doLogin(formData: FormData) {
 }
 
 export async function doLogout() {
-  await signOut({ redirectTo: "/" });
+  await signOut({ redirectTo: "/login" });
 }
 
 export async function doCredentialLogin(formData: FormData) {

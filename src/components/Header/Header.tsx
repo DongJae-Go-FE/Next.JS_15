@@ -15,7 +15,6 @@ export default function Header() {
   }
 
   const fontStyle = "font-medium text-black";
-
   return (
     <header className="fixed left-0 top-0 z-[1001] flex h-14 w-full items-center gap-x-2 bg-white px-6">
       <h1 className="w-16">

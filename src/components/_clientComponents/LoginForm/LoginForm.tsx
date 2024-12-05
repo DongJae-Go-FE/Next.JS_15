@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { doCredentialLogin } from "@/actions/loginActions";
 
-import { useState } from "react";
+// import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
@@ -12,7 +12,7 @@ export default function LoginForm() {
   const inputStyle = "h-12 border rounded-md px-3";
 
   const router = useRouter();
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,15 +21,15 @@ export default function LoginForm() {
 
       const response = await doCredentialLogin(formData);
 
-      if (!!response.error) {
-        console.error(response.error);
-        setError(response.error.message);
+      if (!response) {
+        alert("계정정보를 확인하세요");
+        // setError(response.error.message);
       } else {
         router.push("/server");
       }
     } catch (e) {
       console.error(e);
-      setError("계정정보가 틀립니다 확인해보세요");
+      // setError("계정정보가 틀립니다 확인해보세요");
     }
   }
 

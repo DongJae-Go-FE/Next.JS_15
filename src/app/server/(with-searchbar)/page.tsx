@@ -4,7 +4,6 @@ import ServerRecommendBooks from "@/components/_serverComponents/ServerRecommend
 import ServerRegisteredAllBooks from "@/components/_serverComponents/ServerRegisteredAllBooks";
 
 import SuspenseSkeleton from "@/components/SuspenseSkeleton";
-import { auth } from "@/auth";
 
 export const dynamic = "force-dynamic";
 //특정 페이지의 유형을 강제로 Static, Dynamic 페이지로 설정
@@ -26,11 +25,8 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const sessions = await auth();
-
   return (
     <div>
-      <div>테스트:{sessions?.user?.email}</div>
       <section className="mb-20">
         <h2>지금 추천하는 도서</h2>
         <SuspenseSkeleton>
