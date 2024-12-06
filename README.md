@@ -1,16 +1,8 @@
-배포 URL 
-- <a href="https://labs-books-app.vercel.app/server" target="_blank">https://labs-books-app.vercel.app/server</a>
-
-도입 검토
+셋팅
 - Next.JS 15
 - React19
 - Next_Auth V5
-
-셋팅
 - TypeScript
 - MogoDB
 - Tailwind CSS
-- ReactQuery 고민(with React19, Next.JS 15 And MogoDB)
-
-내 연습용
-- React_Hook_Form
+- ReactQuery
