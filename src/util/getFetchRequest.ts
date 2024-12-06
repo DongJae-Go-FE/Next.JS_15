@@ -36,6 +36,7 @@ const getFetchRequest = async <Response, Params = undefined>({
     });
     params = `?${queryString.stringify(filtered)}`;
   }
+  // .
 
   const response = await fetch(`${base_url}${config.path}${params}`, {
     method,
